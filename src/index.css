@@ -1,16 +1,17 @@
 *{
-  margin: 0;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
-html, body, #root {
+html, body, #root{
   height: 100%;
 }
+
 body{
-  background-color: #EFEFEF;
-  font-family: sans-serif;
   font: 14px;
+  font-family: sans-serif;
+  background-color: #EFEFEF;
 }
 
 a{
@@ -20,6 +21,7 @@ a{
 ul{
   list-style: none;
 }
+
 button{
   cursor: pointer;
 }
