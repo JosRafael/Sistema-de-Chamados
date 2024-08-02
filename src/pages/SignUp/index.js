@@ -7,6 +7,15 @@ export default function Cadastro() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+function handleSubmit(e) {
+  e.preventDefault();
+  if (nome !== '' && email !== '' && password !== '') {
+    alert("FAZER CADASTRO");
+  } else {
+    alert("Preencha todos os campos.");
+  }
+}
+
   return (
     <div className="container-center">
       <div className="login">
@@ -14,7 +23,7 @@ export default function Cadastro() {
           <img src={Logo} alt="Logo do sistema"/>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <h1>Nova conta</h1>
           <input 
             type="text" 
