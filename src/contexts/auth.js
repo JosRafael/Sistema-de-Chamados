@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from "react";
 import {auth, db} from '../services/firebaseConnection'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {doc, getDoc, setDoc}  from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -12,11 +12,34 @@ export default function AuthProvider({children}){
     const [loadingAuth, setLoadinAuth]=useState(false);
     const navigate=useNavigate()
 
-    function signIn(email, password){
-        console.log(email)
-        console.log(password)
-        alert("Logado com sucesso!")
+    async function signIn(email, password){
+        setLoadinAuth(true)
+
+       await signInWithEmailAndPassword(auth, email, password)
+       .then(async(value)=>{
+        let uid = value.user.uid;
+
+        const docRef=doc(db, "users", uid)
+        const docSnap = await getDoc(docRef)
+
+        let data ={
+            uid: uid,
+            nome: docSnap.data().nome,
+            email: value.user.email,
+            avatarUrl: docSnap.data().avatarUrl
+        }
+        setUser(data)
+        storageUser(data)
+        setLoadinAuth(false)
+        toast.success("Bem-vindo(a) de volta!")
+        navigate("/dashboard")
+       })
+       .catch(()=>{
+            setLoadinAuth(false)
+            toast.error("Ops algo deu errado!")
+       })
     }
+
     async function signUp(email,password,nome){
         setLoadinAuth(true)
         await createUserWithEmailAndPassword(auth, email, password)
@@ -50,6 +73,7 @@ export default function AuthProvider({children}){
     function storageUser(data){
         localStorage.setItem('@ticketsPRO', JSON.stringify(data))
     }
+
     return(
         <AuthContext.Provider
         value={{
@@ -57,7 +81,7 @@ export default function AuthProvider({children}){
             user,
             signIn,
             signUp,
-            loadingAuth
+            loadingAuth,
         }}
         >
             {children}
