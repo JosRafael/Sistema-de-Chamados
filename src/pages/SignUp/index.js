@@ -2,7 +2,6 @@ import { useState, useContext } from 'react';
 import Logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
-
 export default function Cadastro() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
