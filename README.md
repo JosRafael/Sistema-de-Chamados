@@ -18,10 +18,9 @@ O **Sistema de Chamados** é uma aplicação web desenvolvida para gerenciar e a
 ## Tecnologias Utilizadas
 
 - **Frontend**: React.js, Tailwind CSS
-- **Backend**: Laravel, PHP
-- **Banco de Dados**: MySQL
+- **Backend**: NodeJs
+- **Banco de Dados**: Postgresql
 - **Autenticação**: JWT (JSON Web Tokens)
-- **Containerização**: Docker
 
 ## Instalação
 
