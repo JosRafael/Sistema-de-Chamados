@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Sistema de Chamados
 
-## Available Scripts
+## Descrição
 
-In the project directory, you can run:
+O **Sistema de Chamados** é uma aplicação web desenvolvida para gerenciar e acompanhar solicitações de suporte técnico. Com uma interface amigável e intuitiva, o sistema permite que usuários registrem novos chamados, acompanhem o status de suas solicitações e interajam com a equipe de suporte de forma eficiente.
 
-### `npm start`
+## Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Cadastro de Usuários**: Permite que novos usuários se registrem e façam login no sistema.
+- **Abertura de Chamados**: Os usuários podem abrir novos chamados especificando o problema encontrado.
+- **Acompanhamento de Chamados**: Visualização e acompanhamento do status de chamados abertos.
+- **Comentários em Chamados**: Interação entre usuários e equipe de suporte por meio de comentários.
+- **Painel Administrativo**: Área exclusiva para administradores gerenciarem chamados e usuários.
+- **Notificações**: Envio de notificações por e-mail para atualização de status dos chamados.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tecnologias Utilizadas
 
-### `npm test`
+- **Frontend**: React.js, Tailwind CSS
+- **Backend**: Laravel, PHP
+- **Banco de Dados**: MySQL
+- **Autenticação**: JWT (JSON Web Tokens)
+- **Containerização**: Docker
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instalação
 
-### `npm run build`
+Para rodar o projeto localmente, siga os passos abaixo:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone o repositório:
+    ```sh
+    git clone https://github.com/seu-usuario/Sistema-de-Chamados.git
+    ```
+2. Navegue até o diretório do projeto:
+    ```sh
+    cd Sistema-de-Chamados
+    ```
+3. Instale as dependências do backend:
+    ```sh
+    composer install
+    ```
+4. Configure o arquivo `.env` com suas credenciais de banco de dados.
+5. Execute as migrações do banco de dados:
+    ```sh
+    php artisan migrate
+    ```
+6. Inicie o servidor Laravel:
+    ```sh
+    php artisan serve
+    ```
+7. Em outra aba do terminal, instale as dependências do frontend:
+    ```sh
+    cd frontend
+    npm install
+    ```
+8. Inicie o servidor React:
+    ```sh
+    npm start
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contribuição
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests. Para contribuições maiores, por favor, abra uma issue primeiro para discutir o que você gostaria de mudar.
 
-### `npm run eject`
+## Licença
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Este projeto está licenciado sob a [MIT License](LICENSE).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
