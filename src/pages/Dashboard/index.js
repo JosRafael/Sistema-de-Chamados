@@ -1,5 +1,7 @@
 import { AuthContext } from "../../contexts/auth"
 import { useContext } from "react"
+import Header from "../../components/Header";
+
 export default function Dashboard(){
     const {logout} = useContext(AuthContext);
 
@@ -8,7 +10,8 @@ export default function Dashboard(){
     }
     return(
         <div>
-            <h1>DASHBOARD</h1>
+            <Header/>
+            <h1>.</h1>
             <button onClick={handleLogout}>Sair da conta</button>
         </div>
     )
