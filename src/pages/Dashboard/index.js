@@ -11,7 +11,7 @@ export default function Dashboard(){
     return(
         <div>
             <Header/>
-            <h1>.</h1>
+            <h1>Dashboard</h1>
             <button onClick={handleLogout}>Sair da conta</button>
         </div>
     )
