@@ -10,6 +10,7 @@ import { collection, getDocs, orderBy, limit, startAfter, query} from 'firebase/
 import { db } from '../../services/firebaseConnection'
 
 import { format } from 'date-fns'
+import Modal from '../../components/Modal'
 
 import './dashboard.css'
 
@@ -20,7 +21,13 @@ export default function Dashboard(){
 
   const [chamados, setChamados] = useState([])
   const [loading, setLoading] = useState(true);
+
   const [isEmpty, setIsEmpty] = useState(false)
+  const [lastDocs, setLastDocs] = useState()
+  const [loadingMore, setLoadingMore] = useState(false);
+
+  const [showPostModal, setShowPostModal] = useState(false);
+  const [detail, setDetail] = useState()
 
 
   useEffect(() => {
@@ -62,15 +69,33 @@ export default function Dashboard(){
         })
       })
 
-      setChamados(chamados => [...chamados, ...lista])
+      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1] // Pegando o ultimo item
 
+      setChamados(chamados => [...chamados, ...lista])
+      setLastDocs(lastDoc);
 
     }else{
       setIsEmpty(true);
     }
-    
+
+    setLoadingMore(false);
+
+  }
 
 
+  async function handleMore(){
+    setLoadingMore(true);
+
+    const q = query(listRef, orderBy('created', 'desc'), startAfter(lastDocs),  limit(5));
+    const querySnapshot = await getDocs(q);
+    await updateState(querySnapshot);
+
+  }
+
+
+  function toggleModal(item){
+    setShowPostModal(!showPostModal)
+    setDetail(item)
   }
 
 
@@ -134,29 +159,40 @@ export default function Dashboard(){
                         <td data-label="Cliente">{item.cliente}</td>
                         <td data-label="Assunto">{item.assunto}</td>
                         <td data-label="Status">
-                          <span className="badge" style={{ backgroundColor: '#999' }}>
+                          <span className="badge" style={{ backgroundColor: item.status === 'Aberto' ? '#5cb85c' : '#999' }}>
                             {item.status}
                           </span>
                         </td>
                         <td data-label="Cadastrado">{item.createdFormat}</td>
                         <td data-label="#">
-                          <button className="action" style={{ backgroundColor: '#3583f6' }}>
+                          <button className="action" style={{ backgroundColor: '#3583f6' }} onClick={ () => toggleModal(item)}>
                             <FiSearch color='#FFF' size={17}/>
                           </button>
-                          <button className="action" style={{ backgroundColor: '#f6a935' }}>
+                          <Link to={`/new/${item.id}`} className="action" style={{ backgroundColor: '#f6a935' }}>
                             <FiEdit2 color='#FFF' size={17}/>
-                          </button>
+                          </Link>
                         </td>
                       </tr>
                     )
                   })}
                 </tbody>
-              </table>              
+              </table>   
+
+
+              {loadingMore && <h3>Buscando mais chamados...</h3>}    
+              {!loadingMore && !isEmpty && <button className="btn-more" onClick={handleMore}>Buscar mais</button>  }  
             </>
           )}
         </>
 
       </div>
+
+      {showPostModal && (
+        <Modal
+          conteudo={detail}
+          close={ () => setShowPostModal(!showPostModal) }
+        />
+      )}
     
     </div>
   )
